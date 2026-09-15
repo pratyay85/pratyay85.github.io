@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = "https://pratyay.net"
 ROUTES = ["/", "/research/", "/teaching-2/", "/mentoring/", "/others/", "/others/the-coffee-house-experience/"]
 OWN_HOSTS = {"pratyay.net", "www.pratyay.net", "pratmukh.wordpress.com", "pratmukh.files.wordpress.com"}
-ASSET_SUFFIXES = {".pdf", ".ppt", ".pptx", ".doc", ".docx", ".zip", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
+ASSET_SUFFIXES = {".pdf", ".ppt", ".pptx", ".pps", ".ppsx", ".doc", ".docx", ".zip", ".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
 report = {"source": SOURCE, "pages": [], "downloads": [], "warnings": []}
 assets = {}
 
@@ -79,7 +79,7 @@ def main():
         article = soup.select_one(".entry-content") or soup.select_one(".wp-block-post-content") or soup.select_one("article") or soup.select_one(".post-content, .entry, .postbody, .post, .hentry, #content, main")
         if article is None:
             raise RuntimeError("No article found: " + route + " " + str(soup.body)[:8000])
-        for junk in article.select("script, style, .sharedaddy, .sd-sharing-enabled, .wpcnt, .jp-relatedposts, #jp-post-flair, .jetpack-likes-widget-wrapper"):
+        for junk in article.select("header, footer, nav, script, style, .sharedaddy, .sd-sharing-enabled, .wpcnt, .jp-relatedposts, #jp-post-flair, .jetpack-likes-widget-wrapper"):
             junk.decompose()
         for element in article.find_all(True):
             for key in list(element.attrs):
@@ -105,8 +105,12 @@ def main():
         title = title.get_text(" ", strip=True) if title else ("Home" if route == "/" else route.strip("/").title())
         styles = [link.get("href") for link in soup.select('link[rel="stylesheet"]')]
         body_class = soup.body.get("class", []) if soup.body else []
+        if route == "/":
+            (ROOT / "content").mkdir(exist_ok=True)
+            global_css = "\\n".join(style.get_text() for style in soup.select("style") if "global-styles" in style.get("id", "") or "custom-css" in style.get("id", ""))
+            (ROOT / "content/source-style.css").write_text(global_css)
         pages.append({"route": route, "title": title, "html": article.decode_contents()})
-        report["pages"].append({"route": route, "title": title, "stylesheets": styles, "body_classes": body_class, "content_element": str(article.name), "content_attributes": article.attrs, "layout_preview": str(soup.body)[:18000], "text_length": len(article.get_text())})
+        report["pages"].append({"route": route, "title": title, "stylesheets": styles, "body_classes": body_class, "content_element": str(article.name), "content_attributes": article.attrs,  "text_length": len(article.get_text())})
     (ROOT / "content").mkdir(exist_ok=True)
     (ROOT / "content/pages.json").write_text(json.dumps(pages, ensure_ascii=False, indent=2) + "\n")
     (ROOT / "content/migration-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
