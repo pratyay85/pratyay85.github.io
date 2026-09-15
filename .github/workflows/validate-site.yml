@@ -1,0 +1,33 @@
+name: Validate website
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build the GitHub Pages site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install validation dependencies
+        run: python -m pip install beautifulsoup4==4.13.4 playwright==1.55.0
+      - name: Check content and local links
+        run: python scripts/validate_site.py
+      - name: Install browser
+        run: python -m playwright install --with-deps chromium
+      - name: Check desktop and mobile layouts
+        run: python scripts/check_layout.py

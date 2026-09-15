@@ -1,0 +1,108 @@
+/* Inspired by the original LeanCV WordPress layout and custom palette. */
+:root {
+  color-scheme: dark;
+  --background: #122713;
+  --panel: #263927;
+  --text: #f8f8f7;
+  --muted: #c9cec4;
+  --heading: #f1efe8;
+  --accent: #d2f76b;
+  --line: #ffffff35;
+  --gutter: clamp(20px, 2.3vw, 40px);
+  --wp--preset--spacing--20: .5rem;
+  --wp--preset--spacing--30: 1rem;
+  --wp--preset--spacing--40: 1.5rem;
+  --wp--preset--spacing--50: 2rem;
+  --wp--preset--spacing--60: 3rem;
+  --wp--preset--spacing--70: 2rem;
+  --wp--preset--spacing--80: 4rem;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body { margin: 0; background: var(--background); color: var(--text); font: 400 17px/1.65 "Ubuntu", system-ui, sans-serif; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .2em; overflow-wrap: anywhere; }
+a:hover { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 2px; }
+img, video { max-width: 100%; height: auto; }
+iframe { max-width: 100%; border: 0; }
+.site { max-width: 1680px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 65fr) minmax(0, 35fr); grid-template-rows: auto 1fr auto; align-items: start; }
+.site-header, main, .site-footer { grid-column: 1; margin-inline: var(--gutter); min-width: 0; }
+.site-header { grid-row: 1; margin-top: 48px; margin-bottom: 42px; }
+.header-top { display: flex; justify-content: space-between; align-items: baseline; gap: 22px; flex-wrap: wrap; }
+.site-title, .navigation, .name, .side-navigation { font-size: 12px; line-height: 1.8; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+.site-title { text-decoration: none; }
+.navigation { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.navigation a, .side-navigation a { text-decoration: none; }
+.navigation a[aria-current="page"] { color: var(--accent); text-decoration: underline; text-underline-offset: 6px; }
+.identity { margin-top: 42px; }
+.name { font-family: "Merriweather", Georgia, serif; font-size: 16px; margin: 0 0 8px; color: var(--heading); }
+.tagline { margin: 0; font-size: 17px; }
+.portrait-panel { grid-column: 2; grid-row: 1 / 4; position: sticky; top: 24px; margin: 24px 24px 32px 0; text-align: center; min-width: 0; }
+.profile-image { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; object-position: center bottom; }
+.social-links { display: flex; justify-content: center; gap: 10px 20px; flex-wrap: wrap; margin: 22px 12px; font-size: 14px; }
+.side-navigation { display: flex; justify-content: center; gap: 10px 18px; flex-wrap: wrap; padding: 16px 12px; border-block: 1px solid var(--line); }
+.email-link { display: inline-block; margin: 22px 10px 0; font-size: 14px; color: var(--muted); }
+main { grid-row: 2; padding-bottom: 30px; }
+main:focus { outline: none; }
+h1, h2, h3, h4, h5, h6 { font-family: "Merriweather", Georgia, serif; color: var(--heading); font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; }
+.page-title { font-size: 24px; margin: 0 0 30px; }
+.entry-content h2 { font-size: 17px; text-transform: uppercase; letter-spacing: .09em; margin: 36px 0 18px; }
+.entry-content h3 { font-size: 17px; margin: 24px 0 14px; }
+.entry-content h4 { font-size: 15px; }
+.entry-content p { margin: 0 0 18px; }
+.entry-content p:empty { display: none; }
+.entry-content ul, .entry-content ol { padding-left: 28px; margin: 16px 0 28px; }
+.entry-content li { padding-left: 3px; margin-block: 8px; }
+.entry-content li > ul, .entry-content li > ol { margin-top: 6px; margin-bottom: 20px; }
+.entry-content li li { margin-block: 3px; }
+.entry-content ol > li::marker { color: var(--accent); font-weight: 700; }
+.entry-content blockquote { margin: 20px 0; padding: 0 0 0 24px; border-left: 1px solid var(--line); font-style: normal; }
+.entry-content blockquote > :first-child { margin-top: 0; }
+.entry-content blockquote > :last-child { margin-bottom: 0; }
+.entry-content > :first-child { margin-top: 0; }
+.entry-content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0; }
+.entry-content mark { color: var(--accent); background: transparent; }
+.entry-content .has-text-align-center { text-align: center; }
+.entry-content .has-text-align-right { text-align: right; }
+.entry-content .has-large-font-size { font-size: 22px; }
+.entry-content .has-medium-font-size { font-size: 19px; }
+.entry-content .has-small-font-size { font-size: 16px; }
+.entry-content .wp-block-group { min-width: 0; }
+.entry-content .wp-block-columns { display: flex; flex-wrap: wrap; gap: 24px; }
+.entry-content .wp-block-column { flex: 1 1 260px; min-width: 0; }
+.entry-content figure { margin: 20px 0; }
+.entry-content figure.alignleft { float: left; margin: 0 20px 10px 0; }
+.entry-content figure.aligncenter { text-align: center; }
+.entry-content .wp-block-embed__wrapper { overflow-wrap: anywhere; }
+.entry-content table { width: 100%; border-collapse: collapse; }
+.entry-content td, .entry-content th { border: 1px solid var(--line); padding: 8px; }
+.entry-content pre { overflow-x: auto; padding: 16px; background: var(--panel); }
+.site-footer { grid-row: 3; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 26px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+.skip-link { position: fixed; top: -120px; left: 16px; z-index: 100; padding: 12px 18px; background: var(--accent); color: #122713; }
+.skip-link:focus { top: 12px; }
+@media (min-width: 1600px) { .portrait-panel { margin-left: 20px; } }
+@media (max-width: 800px) {
+  .site { grid-template-columns: minmax(0, 1fr); }
+  .site-header { margin-top: 24px; margin-bottom: 26px; }
+  .header-top { display: block; }
+  .navigation { margin-top: 20px; gap: 10px 18px; font-size: 11px; }
+  .identity { margin-top: 30px; }
+  .portrait-panel { grid-column: 1; grid-row: 2; position: static; margin: 0 var(--gutter) 36px; }
+  .profile-image { width: min(100%, 300px); margin-inline: auto; }
+  .social-links { margin-block: 16px; }
+  .side-navigation, .email-link { display: none; }
+  main { grid-column: 1; grid-row: 3; }
+  .site-footer { grid-column: 1; grid-row: 4; }
+  .entry-content blockquote { padding-left: 16px; }
+}
+@media (max-width: 400px) { body { font-size: 16px; } .navigation { gap: 8px 13px; letter-spacing: .055em; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  body { background: white; color: black; font-size: 11pt; }
+  .site { display: block; }
+  .navigation, .portrait-panel, .site-footer, .skip-link { display: none; }
+  .site-header, main { margin: 0; }
+  .site-header { margin-bottom: 25px; }
+  h1, h2, h3, h4, .name, .entry-content mark { color: black !important; }
+  a { color: black; }
+}

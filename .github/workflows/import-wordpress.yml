@@ -1,10 +1,5 @@
 name: Import WordPress content
 on:
-  push:
-    branches: [main]
-    paths:
-      - scripts/import_wordpress.py
-      - .github/workflows/import-wordpress.yml
   workflow_dispatch:
 permissions:
   contents: write

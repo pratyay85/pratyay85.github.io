@@ -1,0 +1,17 @@
+title: Pratyay Mukherjee
+description: Cryptography and Computer Security Researcher — Principal Researcher at Hashgraph; Visiting Scientist and Guest Faculty at ISI Kolkata; Founder and Director of AlgoBengal Research Labs.
+url: https://pratyay85.github.io
+baseurl: ""
+lang: en
+timezone: Asia/Kolkata
+markdown: kramdown
+exclude:
+  - README.md
+  - MIGRATION.md
+  - content
+  - scripts
+  - requirements.txt
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - validation
