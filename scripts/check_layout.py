@@ -14,7 +14,7 @@ threading.Thread(target=server.serve_forever, daemon=True).start()
 def serve_preview(route):
     """Serve the production URL from this build so absolute theme links stay local."""
     parsed = urlsplit(route.request.url)
-    if parsed.hostname == "pratyay85.github.io":
+    if parsed.hostname in {"pratyay85.github.io", "pratyay.net"}:
         response = route.fetch(url="http://127.0.0.1:8765" + parsed.path + ("?" + parsed.query if parsed.query else ""))
         route.fulfill(response=response)
     else:
