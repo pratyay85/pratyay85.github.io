@@ -76,9 +76,9 @@ def main():
     for route in ROUTES:
         data, _ = fetch(SOURCE + route)
         soup = BeautifulSoup(data, "html.parser")
-        article = soup.select_one(".entry-content") or soup.select_one("article")
+        article = soup.select_one(".entry-content") or soup.select_one(".wp-block-post-content") or soup.select_one("article")
         if article is None:
-            raise RuntimeError("No article found: " + route)
+            raise RuntimeError("No article found: " + route + " " + str(soup)[:4000])
         for junk in article.select("script, style, .sharedaddy, .sd-sharing-enabled, .wpcnt, .jp-relatedposts, #jp-post-flair, .jetpack-likes-widget-wrapper"):
             junk.decompose()
         for element in article.find_all(True):
@@ -101,7 +101,7 @@ def main():
                 element["title"] = element.get("title", "Embedded media")
             if element.name == "img":
                 element["loading"] = "lazy"
-        title = soup.select_one(".entry-title")
+        title = soup.select_one(".entry-title") or soup.select_one(".wp-block-post-title")
         title = title.get_text(" ", strip=True) if title else ("Home" if route == "/" else route.strip("/").title())
         styles = [link.get("href") for link in soup.select('link[rel="stylesheet"]')]
         body_class = soup.body.get("class", []) if soup.body else []
