@@ -21,7 +21,7 @@ for route in routes + ["/404.html", "/sitemap/"]:
         for key in ("href", "src"):
             value = element.get(key, "")
             parsed = urlsplit(value)
-            if not value or parsed.scheme or parsed.netloc or value.startswith("#"):
+            if not value or value.startswith("#") or (parsed.netloc and parsed.hostname != "pratyay85.github.io") or (parsed.scheme and parsed.scheme not in ("http", "https")):
                 continue
             local = root / unquote(parsed.path.lstrip("/"))
             if local.is_dir():

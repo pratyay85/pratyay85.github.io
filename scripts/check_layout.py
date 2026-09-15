@@ -5,11 +5,21 @@ import http.server
 import json
 import os
 import threading
+from urllib.parse import urlsplit
 from playwright.sync_api import sync_playwright
 
 handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory="_site")
 server = http.server.ThreadingHTTPServer(("127.0.0.1", 8765), handler)
 threading.Thread(target=server.serve_forever, daemon=True).start()
+def serve_preview(route):
+    """Serve the production URL from this build so absolute theme links stay local."""
+    parsed = urlsplit(route.request.url)
+    if parsed.hostname == "pratyay85.github.io":
+        response = route.fetch(url="http://127.0.0.1:8765" + parsed.path + ("?" + parsed.query if parsed.query else ""))
+        route.fulfill(response=response)
+    else:
+        route.abort()
+
 routes = ["/", "/research/", "/teaching-2/", "/mentoring/", "/others/", "/others/the-coffee-house-experience/"]
 results = []
 try:
@@ -17,11 +27,11 @@ try:
         browser = playwright.chromium.launch()
         for width, height in [(1440, 1000), (390, 844), (320, 740)]:
             page = browser.new_page(viewport={"width": width, "height": height}, color_scheme="light")
-            page.route("**/*", lambda route: route.continue_() if route.request.url.startswith("http://127.0.0.1") else route.abort())
+            page.route("**/*", serve_preview)
             errors = []
             page.on("pageerror", lambda error: errors.append(str(error)))
             for path in routes:
-                response = page.goto("http://127.0.0.1:8765" + path)
+                response = page.goto("https://pratyay85.github.io" + path)
                 assert response.status == 200, path
                 page.locator(".page__content").wait_for(state="visible")
                 page.wait_for_function("Array.from(document.querySelectorAll('.author__avatar img')).every(i => i.complete && i.naturalWidth > 0)")
@@ -34,13 +44,13 @@ try:
                 if width >= 1024:
                     assert page.locator(".sidebar").bounding_box()["x"] < page.locator(".page").bounding_box()["x"], "Profile must be left of content"
                     assert portrait.bounding_box()["width"] <= 180, "Use the compact Academic Pages portrait"
-            page.goto("http://127.0.0.1:8765/")
+            page.goto("https://pratyay85.github.io/")
             nav_link = page.locator("#site-nav").get_by_role("link", name="Publications", exact=True)
             if not nav_link.is_visible():
                 page.locator("#site-nav > button").click()
             nav_link.click()
             assert page.url.endswith("/research/")
-            page.goto("http://127.0.0.1:8765/")
+            page.goto("https://pratyay85.github.io/")
             page.locator("#theme-toggle").click()
             page.wait_for_function("document.documentElement.dataset.theme === 'dark'")
             page.locator("#theme-toggle").click()
