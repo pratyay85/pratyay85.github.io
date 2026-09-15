@@ -34,6 +34,8 @@ try:
                 response = page.goto("https://pratyay85.github.io" + path)
                 assert response.status == 200, path
                 page.locator(".page__content").wait_for(state="visible")
+                page.wait_for_function("getComputedStyle(document.querySelector('#main')).opacity === '1'")
+                assert 0 <= page.locator(".page__title").bounding_box()["y"] < height, "Heading must appear in the first screen"
                 page.wait_for_function("Array.from(document.querySelectorAll('.author__avatar img')).every(i => i.complete && i.naturalWidth > 0)")
                 assert not page.evaluate("document.documentElement.scrollWidth > window.innerWidth"), f"Horizontal overflow at {width}px: {path}"
                 broken = page.locator("img").evaluate_all("(imgs) => imgs.filter(i => i.complete && i.naturalWidth === 0).map(i => i.src)")
@@ -61,8 +63,9 @@ try:
                 page.locator(".author__urls-wrapper button").click()
             assert not errors, errors
             if os.getenv("GITHUB_REF_NAME") == "academicpages-redesign" and width in (1440, 390):
-                page.screenshot(path=f"validation-{width}.png")
-                print(f"PREVIEW_{width}:" + base64.b64encode(page.screenshot()).decode())
+                page.wait_for_function("getComputedStyle(document.querySelector('#main')).opacity === '1'")
+                page.screenshot(path=f"validation-{width}.png", animations="disabled")
+                print(f"PREVIEW_{width}:" + base64.b64encode(page.screenshot(animations="disabled")).decode())
             results.append({"viewport": [width, height], "pages": len(routes), "portrait": "verified", "navigation": "pass", "theme_toggle": "pass"})
             page.close()
         browser.close()
