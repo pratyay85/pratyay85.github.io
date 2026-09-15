@@ -1,0 +1,12 @@
+{% include base_path %}
+<link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css">
+<link rel="stylesheet" href="{{ base_path }}/assets/css/fontawesome.css">
+<link rel="stylesheet" href="{{ base_path }}/assets/css/custom.css">
+<link rel="icon" type="image/svg+xml" href="{{ base_path }}/assets/favicon.svg">
+<meta name="theme-color" content="#ffffff">
+<script>
+  // Start with the light Academic Pages appearance while retaining a visitor's choice.
+  try {
+    if (!localStorage.getItem("theme")) document.documentElement.setAttribute("data-theme", "light");
+  } catch (error) {}
+</script>

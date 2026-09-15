@@ -1,13 +1,60 @@
+# Academic Pages theme, pinned to the reviewed upstream revision.
+remote_theme: academicpages/academicpages.github.io@c77da751a8124450d5fb818056c0cf081fea08e1
+site_theme: default
+locale: en-US
 title: Pratyay Mukherjee
-description: Cryptography and Computer Security Researcher — Principal Researcher at Hashgraph; Visiting Scientist and Guest Faculty at ISI Kolkata; Founder and Director of AlgoBengal Research Labs.
+name: Pratyay Mukherjee
+description: Cryptography and Computer Security Researcher
 url: https://pratyay85.github.io
 baseurl: ""
-lang: en
+repository: pratyay85/pratyay85.github.io
 timezone: Asia/Kolkata
+author:
+  avatar: pm-standard-photo.png
+  name: Pratyay Mukherjee
+  bio: "Principal Researcher at Hashgraph.<br>Visiting Scientist & Guest Faculty at ISI Kolkata.<br>Founder & Director of AlgoBengal Research Labs."
+  location: Kolkata, India
+  email: pratyay85@gmail.com
+  googlescholar: "https://scholar.google.com/citations?user=hnxchQ8AAAAJ&hl=en"
+  github: pratyay85
+  bluesky: pratyay85.bsky.social
+  linkedin: pratyay-mukherjee-77075930
+  twitter: pratyaycrypto
+  facebook: pratyay85
+breadcrumbs: false
+words_per_minute: 160
+read_more: disabled
+comments:
+  provider: false
+atom_feed:
+  hide: true
+analytics:
+  provider: false
 markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+sass:
+  sass_dir: _sass
+  style: compressed
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      share: false
+      comments: false
 exclude:
   - README.md
   - MIGRATION.md
+  - THEME.md
+  - LICENSE-ACADEMICPAGES
   - content
   - scripts
   - requirements.txt
@@ -15,3 +62,8 @@ exclude:
   - Gemfile.lock
   - vendor
   - validation
+  - PM Standard Photo.png
+compress_html:
+  clippings: all
+  ignore:
+    envs: development

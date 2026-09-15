@@ -1,10 +1,9 @@
-- title: Home
-  url: /
-- title: Publications
-  url: /research/
-- title: Teaching
-  url: /teaching-2/
-- title: Mentoring
-  url: /mentoring/
-- title: Miscellaneous
-  url: /others/
+main:
+  - title: Publications
+    url: /research/
+  - title: Teaching
+    url: /teaching-2/
+  - title: Mentoring
+    url: /mentoring/
+  - title: Miscellaneous
+    url: /others/

@@ -1,0 +1,26 @@
+/* Content-specific adjustments; layout and typography come from Academic Pages. */
+.page__content a { overflow-wrap: anywhere; }
+.page__content img { max-width: 100%; height: auto; }
+.page__content figure { margin: 1.5em 0; }
+.page__content .podcast-logo { width: 132px; float: left; margin: 0 1em .5em 0; }
+.page__content .intro { margin-bottom: 1.4em; }
+.page__content .publication-note { font-size: .9em; }
+.page__content .scholar-links { margin: 1em 0 1.5em; }
+.page__content .scholar-links a + a { margin-left: 1.2em; }
+.page__content ol > li { margin-bottom: 1.35em; }
+.page__content li > ul { margin-top: .3em; margin-bottom: .5em; }
+.page__content li > ul > li { margin-bottom: .2em; }
+.page__content blockquote { font-style: normal; }
+.author__avatar img { aspect-ratio: 1; object-fit: cover; }
+.author__bio { line-height: 1.6; }
+.sidebar .author__urls li { white-space: normal; }
+@media (max-width: 924px) {
+  .author__avatar { min-width: 72px; }
+  .author__avatar img { min-width: 72px; }
+  .author__content { padding-right: 10px; }
+  .author__bio { font-size: .8em; }
+}
+@media (max-width: 420px) {
+  .author__urls-wrapper { display: block; margin-top: 12px; }
+  .author__urls { right: auto; left: 0; }
+}
