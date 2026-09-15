@@ -24,3 +24,14 @@
   .author__urls-wrapper { display: block; margin-top: 12px; }
   .author__urls { right: auto; left: 0; }
 }
+
+/* Distinguish the literary quotation from the surrounding page text. */
+.page__content .personal-quote { margin: 0 0 1.5em; }
+.page__content .personal-quote p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15em;
+  font-style: italic;
+  line-height: 1.65;
+  margin-bottom: .5em;
+}
+.page__content .personal-quote footer { font-size: .85em; font-style: normal; }
