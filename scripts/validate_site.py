@@ -36,7 +36,19 @@ for route in routes + ["/404.html", "/sitemap/"]:
     if route == "/research/":
         ordered = main.find_all("ol")
         count = sum(len(ol.find_all("li", recursive=False)) for ol in ordered)
-        assert count == 43, f"Expected 43 peer-reviewed publications, got {count}"
+        source = BeautifulSoup(Path("research/index.html").read_text(), "html.parser")
+        expected_list = source.find(id="peer-reviewed").find_next_sibling("ol")
+        expected_titles = [
+            li.find(["strong", "b"]).get_text(" ", strip=True)
+            for li in expected_list.find_all("li", recursive=False)
+        ]
+        actual_titles = [
+            li.find(["strong", "b"]).get_text(" ", strip=True)
+            for ol in ordered for li in ol.find_all("li", recursive=False)
+        ]
+        assert len(expected_titles) >= 43, "Original publication list appears truncated"
+        assert count == len(expected_titles), f"Expected {len(expected_titles)} peer-reviewed publications, got {count}"
+        assert actual_titles == expected_titles, "Built publication titles/order differ from source"
         assert "InstaRand" in main.get_text()
         assert "Two Round Multi-party Computation" in main.get_text()
 assert not errors, "\n".join(errors)
