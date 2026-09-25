@@ -1,0 +1,19 @@
+Organization logos used in /others/#social
+
+Padakshep
+Source: https://usa.padakshep.org/
+Downloaded from the official site's "Padakshep Logo" image.
+
+Kolotan
+Source: https://kolotan.org/wp-content/uploads/2022/12/logo1.png
+Official website: https://kolotan.org/
+
+Rokeya Shiksha Kendra
+Official Instagram: https://www.instagram.com/rokeya.shiksha.kendra/
+Logo source: https://www.facebook.com/photo.php?fbid=1385226600378732&set=pb.100066742166825.-2207520000&type=3
+Public artwork posted by the organizing community, Humans of Patuli.
+The original 1080 x 1350 artwork is preserved; CSS displays the circular
+logo in a 312 x 312 viewport beginning at image coordinates (53, 375).
+
+Logos belong to their respective organizations and identify the organizations
+described on this personal website.

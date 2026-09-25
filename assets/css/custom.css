@@ -35,3 +35,61 @@
   margin-bottom: .5em;
 }
 .page__content .personal-quote footer { font-size: .85em; font-style: normal; }
+
+/* Compact organization entries in the Miscellaneous page's Social section. */
+.page__content .social-organizations {
+  list-style: none;
+  padding: 0;
+  margin: 1.25em 0 0;
+}
+.page__content .social-organization {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 1.25em;
+  align-items: start;
+  margin: 0;
+  padding: 1.4em 0;
+}
+.page__content .social-organization + .social-organization {
+  border-top: 1px solid rgba(128, 128, 128, .25);
+}
+.page__content .social-organization:first-child { padding-top: 0; }
+.page__content .social-logo-frame {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background: #fff;
+}
+.page__content .social-logo {
+  display: block;
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+.page__content .social-description { min-width: 0; }
+.page__content .social-description h3 { margin: 0 0 .45em; }
+.page__content .social-description p { margin: 0; }
+/* Show the circular logo from Rokeya's official artwork without altering it. */
+.page__content .social-logo--rokeya {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.page__content .social-logo--rokeya img {
+  position: absolute;
+  width: 346.153846%;
+  max-width: none;
+  height: auto;
+  left: -16.987179%;
+  top: -120.192308%;
+}
+@media (max-width: 600px) {
+  .page__content .social-organization {
+    grid-template-columns: 1fr;
+    gap: .75em;
+  }
+}
