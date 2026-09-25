@@ -93,3 +93,77 @@
     gap: .75em;
   }
 }
+
+/* Podcast introduction, platform links, and dated updates. */
+.page__content .podcast-intro {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 1.25em;
+  align-items: start;
+  margin-bottom: 1.5em;
+}
+.page__content .podcast-intro > div { min-width: 0; }
+.page__content .podcast-cover { margin: .2em 0 0; }
+.page__content .podcast-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.page__content .podcast-intro p:last-child { margin-bottom: 0; }
+.page__content .podcast-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65em;
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+}
+.page__content .podcast-links li { margin: 0; }
+.page__content .podcast-links a {
+  display: inline-block;
+  padding: .5em .85em;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.page__content .podcast-links a:hover { text-decoration: underline; }
+.page__content .podcast-links a:focus-visible {
+  outline: 2px solid #b07816;
+  outline-offset: 3px;
+}
+.page__content .podcast-links .podcast-primary-link {
+  background: #276f7e;
+  border-color: #276f7e;
+  color: #fff;
+}
+.page__content .podcast-follow { font-size: .95em; }
+.page__content .podcast-updates {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+}
+.page__content .podcast-updates li {
+  display: grid;
+  grid-template-columns: 9em minmax(0, 1fr);
+  gap: 1em;
+  margin: 0;
+  padding: .75em 0;
+  border-bottom: 1px solid rgba(128, 128, 128, .25);
+}
+.page__content .podcast-updates li:first-child { padding-top: 0; }
+.page__content .podcast-updates li:last-child { border-bottom: 0; }
+.page__content .podcast-updates time { font-weight: 600; }
+.page__content .podcast-updates p { min-width: 0; margin: 0; }
+@media (max-width: 650px) {
+  .page__content .podcast-intro {
+    grid-template-columns: 1fr;
+    gap: 1em;
+  }
+  .page__content .podcast-cover { width: min(100%, 280px); }
+  .page__content .podcast-updates li {
+    grid-template-columns: 1fr;
+    gap: .25em;
+  }
+}
