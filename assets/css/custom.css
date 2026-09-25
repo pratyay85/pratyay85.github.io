@@ -97,20 +97,32 @@
 /* Podcast introduction, platform links, and dated updates. */
 .page__content .podcast-intro {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 1.25em;
-  align-items: start;
-  margin-bottom: 1.5em;
+  grid-template-columns: minmax(0, 1fr) 176px;
+  gap: 1.5em;
+  align-items: center;
+  margin: .5em 0 1.25em;
 }
-.page__content .podcast-intro > div { min-width: 0; }
-.page__content .podcast-cover { margin: .2em 0 0; }
+.page__content .podcast-intro > div {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+.page__content .podcast-cover {
+  grid-area: 1 / 2;
+  display: block;
+  width: 176px;
+  margin: 0;
+  justify-self: end;
+}
 .page__content .podcast-cover img {
   display: block;
   width: 100%;
   height: auto;
+  margin: 0;
   border-radius: 6px;
 }
+.page__content .podcast-intro p { margin: 0 0 .75em; }
 .page__content .podcast-intro p:last-child { margin-bottom: 0; }
+.page__content .podcast-intro + h2 { margin-top: 1.25em; }
 .page__content .podcast-links {
   display: flex;
   flex-wrap: wrap;
@@ -159,9 +171,14 @@
 @media (max-width: 650px) {
   .page__content .podcast-intro {
     grid-template-columns: 1fr;
-    gap: 1em;
+    gap: .75em;
   }
-  .page__content .podcast-cover { width: min(100%, 280px); }
+  .page__content .podcast-intro > div { grid-area: auto; }
+  .page__content .podcast-cover {
+    grid-area: auto;
+    width: 148px;
+    justify-self: center;
+  }
   .page__content .podcast-updates li {
     grid-template-columns: 1fr;
     gap: .25em;
