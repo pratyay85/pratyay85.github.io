@@ -167,3 +167,20 @@
     gap: .25em;
   }
 }
+
+/* Current Coffee House Experience hosts, in the order listed on the page. */
+.page__content .podcast-hosts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2em;
+  row-gap: .5em;
+  padding-left: 1.2em;
+  margin: 1em 0 1.5em;
+}
+.page__content .podcast-hosts li {
+  min-width: 0;
+  margin: 0;
+}
+@media (max-width: 650px) {
+  .page__content .podcast-hosts { grid-template-columns: 1fr; }
+}
